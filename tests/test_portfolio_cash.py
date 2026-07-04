@@ -11,6 +11,7 @@ Run:
 
 import pytest
 from datetime import datetime, timezone
+from unittest.mock import patch, MagicMock
 from app import create_app
 from app.extensions import db as _db
 from app.models import Portfolio, Transaction, TransactionAction, CashLedger, CashLedgerType

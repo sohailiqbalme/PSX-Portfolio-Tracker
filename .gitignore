@@ -1,0 +1,41 @@
+# Virtual Environment & Python cache
+.venv/
+venv/
+ENV/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg-info/
+.eggs/
+
+# Node modules & build artifacts
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Environment & local secrets
+.env
+frontend/.env
+instance/
+*.db
+*.sqlite
+
+# OS specific files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp

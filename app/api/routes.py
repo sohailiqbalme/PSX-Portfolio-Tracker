@@ -639,9 +639,15 @@ def get_portfolio_performance(portfolio_id: str):
         .order_by(CashLedger.transacted_at.asc())
         .all()
     )
+    for l in ledgers:
+        if l.transacted_at.tzinfo is None:
+            l.transacted_at = l.transacted_at.replace(tzinfo=timezone.utc)
 
     # 6. Fetch all transactions for the portfolio
     portfolio_txns = txns
+    for t in portfolio_txns:
+        if t.transacted_at.tzinfo is None:
+            t.transacted_at = t.transacted_at.replace(tzinfo=timezone.utc)
 
     # 7. Compute daily values for each date in the timeline
     performance_series = []
