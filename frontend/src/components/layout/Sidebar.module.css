@@ -1,0 +1,254 @@
+/* components/layout/Sidebar.module.css */
+
+/* ── Sidebar shell ───────────────────────────────────────────────────────── */
+.sidebar {
+  position:   fixed;
+  top:        0;
+  left:       0;
+  width:      var(--sidebar-width);
+  height:     100vh;
+  z-index:    var(--z-sidebar);
+  display:    flex;
+  flex-direction: column;
+  padding:    1.5rem 1rem 1.25rem;
+  overflow:   hidden;
+
+  /* Glassmorphism */
+  background: rgba(5, 12, 30, 0.75);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-right: 1px solid rgba(0, 212, 255, 0.10);
+  box-shadow: 4px 0 40px rgba(0, 0, 0, 0.50);
+}
+
+/* ── Brand ───────────────────────────────────────────────────────────────── */
+.brand {
+  display:    flex;
+  align-items: center;
+  gap:        0.75rem;
+  padding:    0.25rem 0 0.5rem;
+}
+
+.brandIcon {
+  width:          40px;
+  height:         40px;
+  border-radius:  10px;
+  background:     linear-gradient(135deg, #00d4ff, #7c3aed);
+  display:        flex;
+  align-items:    center;
+  justify-content: center;
+  font-weight:    800;
+  font-size:      1.1rem;
+  color:          #fff;
+  flex-shrink:    0;
+  box-shadow:     0 0 20px rgba(0, 212, 255, 0.35);
+}
+
+.brandText {
+  display:        flex;
+  flex-direction: column;
+  gap:            0.05rem;
+}
+
+.brandName {
+  font-weight:    700;
+  font-size:      1rem;
+  letter-spacing: 0.08em;
+  color:          var(--text-primary);
+}
+
+.brandSub {
+  font-size:      0.65rem;
+  color:          var(--text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ── Divider ─────────────────────────────────────────────────────────────── */
+.divider {
+  height:  1px;
+  margin:  0.75rem 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 212, 255, 0.25) 40%,
+    rgba(0, 212, 255, 0.25) 60%,
+    transparent
+  );
+}
+
+/* ── Navigation ──────────────────────────────────────────────────────────── */
+.nav {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin: 0 -0.5rem;
+}
+
+.navList {
+  list-style: none;
+  display:    flex;
+  flex-direction: column;
+  gap:        0.2rem;
+  padding:    0 0.5rem;
+}
+
+.navItem {
+  position:       relative;
+  display:        flex;
+  align-items:    center;
+  gap:            0.65rem;
+  width:          100%;
+  padding:        0.65rem 0.75rem;
+  border:         none;
+  border-radius:  10px;
+  background:     transparent;
+  color:          var(--text-muted);
+  font-family:    var(--font-sans);
+  font-size:      0.875rem;
+  font-weight:    500;
+  cursor:         pointer;
+  text-align:     left;
+  transition:     color var(--transition-fast),
+                  background var(--transition-fast);
+  overflow:       hidden;
+}
+
+.navItem:hover {
+  color:      var(--text-secondary);
+  background: rgba(0, 212, 255, 0.06);
+}
+
+.navItem.active {
+  color:      var(--accent-cyan);
+  background: rgba(0, 212, 255, 0.10);
+  font-weight: 600;
+}
+
+.navIcon {
+  font-size:  1rem;
+  flex-shrink: 0;
+  transition: transform var(--transition-normal);
+}
+
+.navItem.active .navIcon {
+  transform: scale(1.15);
+}
+
+/* Cyan left border for active item */
+.activeIndicator {
+  position: absolute;
+  left:     0;
+  top:      20%;
+  height:   60%;
+  width:    3px;
+  background: var(--accent-cyan);
+  border-radius: 0 2px 2px 0;
+  box-shadow: 0 0 10px var(--accent-cyan), 0 0 20px var(--accent-cyan-dim);
+}
+
+/* ── Market Status ───────────────────────────────────────────────────────── */
+.marketStatus {
+  display:      flex;
+  flex-wrap:    wrap;
+  align-items:  center;
+  gap:          0.4rem;
+  padding:      0.65rem 0.75rem;
+  border-radius: 10px;
+  background:   rgba(16, 185, 129, 0.08);
+  border:       1px solid rgba(16, 185, 129, 0.20);
+  margin:       0.5rem 0;
+}
+
+.statusDot {
+  width:         8px;
+  height:        8px;
+  border-radius: 50%;
+  background:    var(--accent-emerald);
+  box-shadow:    0 0 8px var(--accent-emerald);
+  animation:     pulseGlow 2s ease-in-out infinite;
+  flex-shrink:   0;
+}
+
+.statusText {
+  font-size:   0.8rem;
+  font-weight: 600;
+  color:       var(--accent-emerald);
+}
+
+.statusTime {
+  font-size:  0.68rem;
+  color:      var(--text-muted);
+  width:      100%;
+  font-family: var(--font-mono);
+  margin-left: 1.2rem;
+}
+
+/* ── User Profile ────────────────────────────────────────────────────────── */
+.userProfile {
+  display:     flex;
+  align-items: center;
+  gap:         0.65rem;
+  padding:     0.5rem 0.25rem 0;
+}
+
+.userAvatar {
+  width:           36px;
+  height:          36px;
+  border-radius:   50%;
+  background:      linear-gradient(135deg, var(--accent-violet), var(--accent-cyan));
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  font-weight:     700;
+  font-size:       0.9rem;
+  color:           #fff;
+  flex-shrink:     0;
+}
+
+.userInfo {
+  display:        flex;
+  flex-direction: column;
+  gap:            0.05rem;
+  overflow:       hidden;
+}
+
+.userName {
+  font-size:    0.85rem;
+  font-weight:  600;
+  color:        var(--text-primary);
+  white-space:  nowrap;
+  overflow:     hidden;
+  text-overflow: ellipsis;
+}
+
+.userRole {
+  font-size:  0.68rem;
+  color:      var(--text-muted);
+  white-space: nowrap;
+  overflow:   hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Sign-out button ─────────────────────────────────────────────────────── */
+.signOutBtn {
+  background:  none;
+  border:      none;
+  color:       var(--text-muted);
+  font-size:   1rem;
+  cursor:      pointer;
+  padding:     0.25rem;
+  border-radius: 6px;
+  flex-shrink: 0;
+  margin-left: auto;
+  display:     flex;
+  align-items: center;
+  justify-content: center;
+  transition:  color var(--transition-fast), background var(--transition-fast);
+}
+
+.signOutBtn:hover {
+  color:       var(--accent-red);
+  background:  rgba(239, 68, 68, 0.10);
+}
+

@@ -1,0 +1,41 @@
+/* components/dashboard/SectionHeader.module.css */
+
+.header {
+  margin-bottom: 1.5rem;
+  display:       flex;
+  flex-direction: column;
+  gap:           0.4rem;
+}
+
+.label {
+  font-size:      0.72rem;
+  font-weight:    600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color:          var(--accent-cyan);
+}
+
+.title {
+  font-size:   clamp(1.2rem, 2.2vw, 1.625rem);
+  font-weight: 700;
+  color:       var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size:  0.85rem;
+  color:      var(--text-muted);
+  line-height: 1.55;
+  max-width:  560px;
+}
+
+.divider {
+  height:     1px;
+  margin-top: 0.75rem;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 212, 255, 0.40),
+    rgba(124, 58, 237, 0.20),
+    transparent
+  );
+}

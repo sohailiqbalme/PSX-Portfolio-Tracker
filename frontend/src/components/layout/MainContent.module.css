@@ -1,0 +1,242 @@
+/* components/layout/MainContent.module.css */
+
+/* ── Main content shell ──────────────────────────────────────────────────── */
+.main {
+  margin-left:   var(--sidebar-width);
+  min-height:    100vh;
+  position:      relative;
+  z-index:       var(--z-content);
+  overflow-x:    hidden;
+}
+
+/* ── Hero section ────────────────────────────────────────────────────────── */
+.heroSection {
+  padding: 3rem 2.5rem 2rem;
+}
+
+.heroHeader {
+  display:         flex;
+  align-items:     flex-end;
+  justify-content: space-between;
+  margin-bottom:   2rem;
+  flex-wrap:       wrap;
+  gap:             1rem;
+}
+
+.heroLabel {
+  font-size:      0.75rem;
+  font-weight:    500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color:          var(--accent-cyan);
+  margin-bottom:  0.4rem;
+}
+
+.heroTitle {
+  font-size:   clamp(1.8rem, 3.5vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color:       var(--text-primary);
+}
+
+.heroMeta {
+  display:        flex;
+  flex-direction: column;
+  align-items:    flex-end;
+  gap:            0.3rem;
+}
+
+.lastUpdated {
+  font-size:  0.75rem;
+  color:      var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.kseIndex {
+  font-size:  0.85rem;
+  color:      var(--text-secondary);
+}
+
+.kseIndex strong {
+  font-family: var(--font-mono);
+}
+
+/* ── Sync Button & Meta ──────────────────────────────────────────────────── */
+.syncBtn {
+  background:     transparent;
+  border:         1px solid rgba(0, 212, 255, 0.25);
+  border-radius:  8px;
+  color:          var(--accent-cyan);
+  padding:        0.5rem 1rem;
+  font-size:      0.825rem;
+  font-weight:    600;
+  cursor:         pointer;
+  font-family:    var(--font-sans);
+  transition:     background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+  box-shadow:     0 0 10px rgba(0, 212, 255, 0.05);
+}
+
+.syncBtn:hover:not(:disabled) {
+  background:   rgba(0, 212, 255, 0.08);
+  border-color: var(--accent-cyan);
+}
+
+.syncBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.syncBtnActive {
+  animation: pulseGlow 1.5s ease-in-out infinite;
+}
+
+/* ── Loading Container ───────────────────────────────────────────────────── */
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  gap: 1rem;
+}
+
+/* ── Error Banner ────────────────────────────────────────────────────────── */
+.errorBanner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: var(--border-radius);
+  color: #f87171;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 2.5rem 0;
+  font-size: 0.875rem;
+}
+
+.warningBanner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: var(--border-radius);
+  color: #fbbf24;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 2.5rem 0;
+  font-size: 0.875rem;
+}
+
+.closeError {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 1.25rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.closeError:hover {
+  opacity: 0.8;
+}
+
+/* ── Generic section ─────────────────────────────────────────────────────── */
+.section {
+  padding: 2rem 2.5rem;
+}
+
+/* ── Ticker table ────────────────────────────────────────────────────────── */
+.tickerTable {
+  background:    var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border:        1px solid var(--glass-border);
+  border-radius: var(--card-radius);
+  overflow:      hidden;
+  box-shadow:    var(--glass-shadow);
+}
+
+.tickerHead {
+  display:               grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  padding:               0.75rem 1.5rem;
+  border-bottom:         1px solid rgba(0, 212, 255, 0.10);
+  background:            rgba(0, 212, 255, 0.04);
+  font-size:             0.72rem;
+  font-weight:           600;
+  letter-spacing:        0.1em;
+  text-transform:        uppercase;
+  color:                 var(--text-muted);
+}
+
+/* ── Analytics placeholder ───────────────────────────────────────────────── */
+.analyticsPlaceholder {
+  border-radius: var(--card-radius);
+  border:        1px dashed rgba(0, 212, 255, 0.20);
+  min-height:    220px;
+  display:       flex;
+  align-items:   center;
+  justify-content: center;
+  background:    rgba(0, 212, 255, 0.03);
+}
+
+.placeholderInner {
+  text-align:  center;
+  max-width:   440px;
+  padding:     2rem;
+  display:     flex;
+  flex-direction: column;
+  align-items: center;
+  gap:         0.75rem;
+}
+
+.placeholderIcon {
+  font-size:  2rem;
+  color:      var(--accent-cyan);
+  opacity:    0.4;
+}
+
+.placeholderText {
+  font-size:  0.9rem;
+  color:      var(--text-secondary);
+  line-height: 1.6;
+}
+
+.placeholderSub {
+  font-size:  0.78rem;
+  color:      var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+/* ── Footer pad ──────────────────────────────────────────────────────────── */
+.footerPad {
+  height: 4rem;
+}
+
+.addBtn {
+  background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+  border: none;
+  border-radius: 8px;
+  color: #0f172a;
+  padding: 0.5rem 1.2rem;
+  font-size: 0.825rem;
+  font-weight: 750;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 242, 254, 0.2);
+  transition: all 0.25s ease;
+}
+
+.addBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 15px rgba(0, 242, 254, 0.4);
+}
+
+.transactionRow:hover {
+  background: rgba(255, 255, 255, 0.03);
+  cursor: pointer;
+}
+
+.settingsContainer {
+  padding: 3rem 2.5rem 2rem;
+}
+

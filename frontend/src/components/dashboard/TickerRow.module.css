@@ -1,0 +1,89 @@
+/* components/dashboard/TickerRow.module.css */
+
+.row {
+  display:               grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  align-items:           center;
+  padding:               0.85rem 1.5rem;
+  border-bottom:         1px solid rgba(0, 212, 255, 0.06);
+  transition:            background var(--transition-fast);
+  cursor:                default;
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.row:hover {
+  background: rgba(0, 212, 255, 0.04);
+}
+
+/* ── Ticker cell ─────────────────────────────────────────────────────────── */
+.tickerCell {
+  display:        flex;
+  flex-direction: column;
+  gap:            0.15rem;
+}
+
+.tickerSymbol {
+  font-family:    var(--font-mono);
+  font-size:      0.9rem;
+  font-weight:    700;
+  color:          var(--accent-cyan);
+  letter-spacing: 0.05em;
+}
+
+.tickerName {
+  font-size:      0.7rem;
+  color:          var(--text-muted);
+  white-space:    nowrap;
+  overflow:       hidden;
+  text-overflow:  ellipsis;
+}
+
+/* ── Price ───────────────────────────────────────────────────────────────── */
+.price {
+  font-size:  0.9rem;
+  font-weight: 600;
+  color:      var(--text-primary);
+}
+
+/* ── Change value ────────────────────────────────────────────────────────── */
+.changeVal {
+  font-size:  0.875rem;
+  font-weight: 500;
+}
+
+/* ── Change percent ──────────────────────────────────────────────────────── */
+.changePct {
+  display:      inline-flex;
+  align-items:  center;
+  gap:          0.25rem;
+  font-size:    0.875rem;
+  font-weight:  600;
+  padding:      0.2rem 0.5rem;
+  border-radius: 6px;
+  width:        fit-content;
+}
+
+.changePct.positive {
+  background: rgba(16, 185, 129, 0.10);
+}
+
+.changePct.negative {
+  background: rgba(239, 68, 68, 0.10);
+}
+
+.arrow {
+  font-size: 0.55rem;
+}
+
+/* ── Volume ──────────────────────────────────────────────────────────────── */
+.volume {
+  font-size:  0.825rem;
+  color:      var(--text-muted);
+}
+
+/* ── Trend colours (shared) ──────────────────────────────────────────────── */
+.positive { color: var(--accent-emerald); }
+.negative { color: var(--accent-red); }
