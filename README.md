@@ -34,13 +34,20 @@ A full-stack application for tracking stock portfolios on the **Pakistan Stock E
 
 ```
 PSX/ (Root)
-├── app/                  # Flask Backend application package
-│   ├── api/              # API blueprints & routes (/api/v1)
-│   ├── models/           # SQLAlchemy database models (Portfolio, Transaction, etc.)
-│   ├── services/         # Business logic services (e.g. price ingestion pipeline)
-│   ├── config.py         # Flask configuration (Dev / Test / Prod configs)
-│   ├── extensions.py     # SQLAlchemy and Migrate initializations
-│   └── __init__.py       # Application factory constructor
+├── backend/              # Flask Backend workspace
+│   ├── app/              # Backend Python application package
+│   │   ├── api/          # API blueprints & routes (/api/v1)
+│   │   ├── models/       # SQLAlchemy database models
+│   │   ├── services/     # Business logic & background services
+│   │   ├── config.py     # Configuration management
+│   │   ├── extensions.py # Shared DB & Migrate extensions
+│   │   └── __init__.py   # Application factory
+│   ├── migrations/       # Alembic database migration scripts
+│   ├── scripts/          # Ingestion / seeding CLI scripts
+│   ├── tests/            # Test suite for backend logic
+│   ├── .env.example      # Template for backend settings
+│   ├── requirements.txt  # Python package list
+│   └── run.py            # Flask entry point script
 ├── docs/                 # Design specs and project documentation
 │   └── trading-journal-spec.md
 ├── frontend/             # React/Vite Frontend application
@@ -49,14 +56,8 @@ PSX/ (Root)
 │   ├── package.json      # Node dependency manifest
 │   ├── vite.config.js    # Vite configuration
 │   └── .env.example      # Template for frontend environment variables
-├── migrations/           # Alembic database migration scripts
-├── scripts/              # CLI scripts (e.g., seeding, manual price ingestion)
-│   ├── ingest_prices.py  # Script for fetching PSX EOD prices
-│   └── seed_metadata.py  # Seed company metadata
-├── tests/                # Pytest suite for the backend application
-├── .env.example          # Template for backend environment variables
-├── requirements.txt      # Python dependencies manifest
-└── run.py                # Backend entry point script
+├── .gitignore            # Root-level gitignore
+└── README.md             # Root-level README
 ```
 
 ---
@@ -72,8 +73,9 @@ PSX/ (Root)
 
 ### 1. Backend Setup
 
-1. **Navigate to project root and create a virtual environment:**
+1. **Navigate to the backend directory and create a virtual environment:**
    ```powershell
+   cd backend
    python -m venv .venv
    .venv\Scripts\activate
    ```
@@ -92,7 +94,7 @@ PSX/ (Root)
 4. **Initialize & Run Database Migrations:**
    Ensure your database URL is correctly configured in `.env`, then apply the migrations:
    ```powershell
-   flask --app run:app db upgrade
+   flask db upgrade
    ```
 
 5. **Seed Initial Company Metadata:**
@@ -104,7 +106,7 @@ PSX/ (Root)
    ```powershell
    python run.py
    # Or using Flask CLI:
-   flask --app run:app run --debug
+   flask run --debug
    ```
    The backend API will be live at `http://localhost:5000/api/v1/`.
 
@@ -141,8 +143,10 @@ PSX/ (Root)
 To fetch the latest end-of-day (EOD) prices for Pakistan Stock Exchange equities, the project contains a price ingestion service.
 
 ### Trigger Ingestion via CLI
-You can ingest prices using the Python command-line utility:
+You can ingest prices from the `backend/` directory using the Python command-line utility:
 ```powershell
+cd backend
+
 # Ingest last 30 days of data for the default set of tickers
 python scripts/ingest_prices.py
 
@@ -159,15 +163,16 @@ python scripts/ingest_prices.py --dry-run
 
 We use `pytest` for the backend testing suite. The tests automatically initialize a fast, in-memory SQLite database, meaning no network or external database credentials are required to run them.
 
-Run tests from the root directory:
+Run tests from the `backend/` directory:
 ```powershell
-pytest tests/ -v --cov=app --cov-report=term-missing
+cd backend
+pytest tests/ -v
 ```
 
 ---
 
 ## Guidelines for Team Collaboration
 
-1. **Never Commit Secrets**: Do not commit your local `.env` or `frontend/.env` files. Both are ignored in the root `.gitignore`. Always document any new variables in `.env.example` and `frontend/.env.example`.
-2. **Database Schema Changes**: Do not modify models without creating corresponding database migrations. Use `flask --app run:app db migrate -m "Description"` to generate a new migration file, review it, and then commit it.
+1. **Never Commit Secrets**: Do not commit local `.env` files (e.g. `backend/.env` or `frontend/.env`). Both are ignored in the root `.gitignore`. Always document any new variables in `.env.example` and `frontend/.env.example`.
+2. **Database Schema Changes**: Do not modify models without creating corresponding database migrations. Navigate to `backend/` and run `flask db migrate -m "Description"` to generate a new migration file, review it, and then commit it.
 3. **Pull Requests**: Ensure all backend unit tests pass before requesting reviews on pull requests.

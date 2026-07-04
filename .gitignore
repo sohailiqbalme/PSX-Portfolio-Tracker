@@ -21,10 +21,14 @@ dist-ssr/
 
 # Environment & local secrets
 .env
+backend/.env
 frontend/.env
 instance/
+backend/instance/
 *.db
 *.sqlite
+backend/*.db
+backend/*.sqlite
 
 # OS specific files
 .DS_Store
